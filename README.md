@@ -12,13 +12,13 @@ The biggest thing that SquareVoice does not provide is a picture set.  The pictu
   
 ##Where to find suitable pictures:
 
-###* http://lessonpix.com/  
+### http://lessonpix.com/  
 This site charges $36 per year, but given that it includes a bunch of appropriate pictures AND the PRC Unity picture set for that price, I find it a bargain.  Disclaimer: I have no affiliation with this site, other than as a customer.
-###* http://www.sclera.be/en/vzw/home
+### http://www.sclera.be/en/vzw/home
 This site provides a free set of pictures that may be suitable
-###* http://http://straight-street.com/
+### http://straight-street.com/
 This site provides a free set of pictures that may be suitable
-###* http://http://arasaac.org/
+### http://arasaac.org/
 This site provides a free set of pictures that may be suitable
-###* Google image search
+### Google image search
 This is do-able, but it may be hard to come up with a picture set that doesn't seem cobbled together since the pictures come from so many sources.
