@@ -9,6 +9,11 @@ using System.Drawing;
 
 namespace SquareVoice
 {
+    public class FileInBadLocationException : Exception
+    {
+
+    }
+
     public class Helpers
     {
         public string mImagesDir;
@@ -34,11 +39,12 @@ namespace SquareVoice
             }
         }
 
+
         public string imagePathToName(string path)
         {
             if (!path.StartsWith(mImagesDir))
             {
-                throw new Exception("File in bad location. Need to make this more robust");
+                throw new FileInBadLocationException();
             }
             path = path.Substring(mImagesDir.Length + 1);
 
