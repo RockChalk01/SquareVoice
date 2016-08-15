@@ -51,6 +51,25 @@ namespace SquareVoice
             }
         }
 
+        
+        private string CopyFileIntoLocation(string originalFile)
+        {
+            string newFileName = System.IO.Path.GetFileName(originalFile);
+            string newFileExtension = System.IO.Path.GetExtension(originalFile);
+            string newFileBase = System.IO.Path.GetFileNameWithoutExtension(originalFile);
+
+            newFileName = newFileBase + "___(" + Guid.NewGuid().ToString() + ")" + newFileExtension;
+
+            string newFileLocation =
+                System.IO.Path.Combine(
+                    mPage.mHelpers.mImagesDir,
+                    newFileName);
+
+            System.IO.File.Copy(originalFile, newFileLocation);
+
+            return newFileLocation;
+        }
+
         private void PickImageButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -64,7 +83,16 @@ namespace SquareVoice
             {
                 string fn = openFileDialog1.FileName;
 
-                string imageName = mPage.mHelpers.imagePathToName(fn);
+                string imageName;
+
+                try
+                {
+                    imageName = mPage.mHelpers.imagePathToName(fn);
+                }
+                catch (FileInBadLocationException)
+                {
+                    imageName = mPage.mHelpers.imagePathToName(CopyFileIntoLocation(fn));
+                }
 
                 mProposedCell.image = imageName;
 
