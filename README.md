@@ -17,7 +17,8 @@ This site charges $36 per year, but given that it includes a bunch of appropriat
 ### http://www.sclera.be/en/vzw/home
 This site provides a free set of pictures that may be suitable
 ### http://straight-street.com/
-This site provides a free set of pictures that may be suitable
+Also available at https://github.com/straight-street/mulberry-symbols
+The Mulberry Symbol Set grew out of an awesomly inspired project to produce an open source, freely available symbol set.  The symbols are high quality and all with a consistent style.  Unfortunately , the funding ran out after about 3000 symbols were developed.  Big props to the folks who made this happen.
 ### http://arasaac.org/
 This site provides a free set of pictures that may be suitable
 ### Google image search
