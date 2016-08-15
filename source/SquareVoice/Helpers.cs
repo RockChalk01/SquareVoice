@@ -44,8 +44,6 @@ namespace SquareVoice
         {
             if (!path.StartsWith(mImagesDir))
             {
-                // fix ImagePath
-
                 throw new FileInBadLocationException();
             }
             path = path.Substring(mImagesDir.Length + 1);
