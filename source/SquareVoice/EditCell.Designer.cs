@@ -134,6 +134,7 @@
             // 
             // EditActionButton
             // 
+            this.EditActionButton.Enabled = false;
             this.EditActionButton.Location = new System.Drawing.Point(398, 210);
             this.EditActionButton.Name = "EditActionButton";
             this.EditActionButton.Size = new System.Drawing.Size(75, 23);
@@ -144,6 +145,7 @@
             // 
             // DeleteActionButton
             // 
+            this.DeleteActionButton.Enabled = false;
             this.DeleteActionButton.Location = new System.Drawing.Point(317, 210);
             this.DeleteActionButton.Name = "DeleteActionButton";
             this.DeleteActionButton.Size = new System.Drawing.Size(75, 23);
@@ -167,6 +169,7 @@
             this.ActionListBox.Name = "ActionListBox";
             this.ActionListBox.Size = new System.Drawing.Size(237, 160);
             this.ActionListBox.TabIndex = 14;
+            this.ActionListBox.SelectedIndexChanged += new System.EventHandler(this.ActionListBox_SelectedIndexChanged);
             // 
             // EditCell
             // 

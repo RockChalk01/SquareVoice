@@ -35,6 +35,10 @@ namespace SquareVoice
             InitializeComponent();
 
             RefreshActionsList();
+            if (ActionListBox.Items.Count > 0)
+            {
+                ActionListBox.SetSelected(0, true);
+            }
             RefreshPicture();
             CaptionTextBox.Text = mCell.text;
         }
@@ -130,6 +134,21 @@ namespace SquareVoice
             if (ActionListBox.SelectedIndex < 0) return;
 
             ActionListBox.Items.RemoveAt(ActionListBox.SelectedIndex);
+        }
+
+        private void ActionListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ActionListBox.Items.Count > 0)
+            {
+                DeleteActionButton.Enabled = true;
+                EditActionButton.Enabled = true;
+            }
+            else
+            {
+                DeleteActionButton.Enabled = false;
+                EditActionButton.Enabled = false;
+            }
+
         }
     }
 
