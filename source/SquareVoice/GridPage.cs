@@ -165,6 +165,7 @@ namespace SquareVoice
 
             this.Text = "SquareVoice (" + Helpers.pageNameToDisplayName(mPage.name) + ")";
             behaviorMap.Dispose();
+            behaviorMap = null;
             var components = new System.ComponentModel.Container();
             behaviorMap = new EyeXFramework.Forms.BehaviorMap(components);
 
@@ -192,147 +193,9 @@ namespace SquareVoice
 
             this.tablePanel.Controls.Clear();
 
-
-            
-            //var flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            //var pictureBox1 = new System.Windows.Forms.PictureBox();
-
-            //tablePanel.Controls.Add(flowLayoutPanel1, 0, 0);
-
-            //flowLayoutPanel1.Controls.Add(pictureBox1);
-            //flowLayoutPanel1.Anchor =
-            //    ((System.Windows.Forms.AnchorStyles)((((
-            //    System.Windows.Forms.AnchorStyles.Top
-            //    | System.Windows.Forms.AnchorStyles.Bottom)
-            //    | System.Windows.Forms.AnchorStyles.Left)
-            //    | System.Windows.Forms.AnchorStyles.Right)));
-
-
-            //pictureBox1.Image = global::SquareVoice.Properties.Resources._2;
-            //pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-
-
             foreach (var cell in mPage.gridItems)
             {
-                //var flp = new System.Windows.Forms.FlowLayoutPanel();
-                var flp = new System.Windows.Forms.TableLayoutPanel();
-                flp.ColumnCount = 1;
-                flp.RowCount = 2;
-                flp.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
-                flp.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
-                flp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-
-                flp.Margin = new System.Windows.Forms.Padding(0);
-
-                flp.Anchor =
-                    ((System.Windows.Forms.AnchorStyles)((((
-                    System.Windows.Forms.AnchorStyles.Top
-                    | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
-
-                var cellPb = new System.Windows.Forms.PictureBox();
-                flp.Controls.Add(cellPb, 0,0);
-
-                var cellTextPb = new System.Windows.Forms.PictureBox();
-
-                cellTextPb.Margin = new System.Windows.Forms.Padding(0);
-
-                Image i = new Bitmap(1200, 100);
-                Graphics g = Graphics.FromImage(i);
-                StringFormat stringFormat = new StringFormat();
-                stringFormat.Alignment = StringAlignment.Center;
-                stringFormat.LineAlignment = StringAlignment.Center;
-                g.DrawString(cell.text, new Font("Arial", 68), Brushes.Black, new PointF(i.Width/2, i.Height/2), stringFormat);
-                if (cell.isEnabled)
-                {
-                    cellTextPb.Image = i;
-                }                
-                g.Dispose();
-                cellTextPb.Dock = DockStyle.Fill;
-                cellTextPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-                cellTextPb.Tag = cell;
-
-                flp.Controls.Add(cellTextPb, 0, 1);
-                flp.Tag = cell;
-
-
-                cellPb.Dock = DockStyle.Fill;
-                cellPb.BackColor = System.Drawing.Color.Transparent;
-                if (null != cell.image && cell.isEnabled)
-                {
-                    string imageFileName = Path.Combine(mHelpers.mImagesDir, cell.image);
-                    cellPb.Image = Image.FromFile(imageFileName);
-                }
-                else
-                {
-                    cellPb.Image = null;
-                }
-                cellPb.TabStop = false;
-                cellPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-                cellPb.Tag = cell;
-
-                mGridItemLookupTable.Add(cellPb, cell);
-
-                string simplePageName = mPage.name;
-                simplePageName = simplePageName.Replace(".SquareVoice", "");
-
-                ContextMenu cm = new ContextMenu();
-                cm.Tag = cell;
-                //miImage
-                MenuItem miEnabled = new MenuItem("&Enabled", new EventHandler(EnabledEventHandler));
-                miEnabled.Checked = cell.isEnabled;
-                miEnabled.Tag = cell;
-                cm.MenuItems.Add(miEnabled);
-
-                //cm.MenuItems.Add("Edit Cell", new EventHandler(EditCellEventHandler));
-                MenuItem miEditCell = new MenuItem("Edit Cell", new EventHandler(EditCellEventHandler));
-                miEditCell.Tag = cell;
-                cm.MenuItems.Add(miEditCell);
-
-                //cm.MenuItems.Add("-");
-                MenuItem miPage = new MenuItem("&Page");
-                cm.MenuItems.Add(miPage);
-                MenuItem miPageName = new MenuItem("Page: " + simplePageName);
-                miPageName.Enabled = false;
-                miPage.MenuItems.Add(miPageName);
-                miPage.MenuItems.Add("&New Page", new EventHandler(NewPageEventHandler));
-                miPage.MenuItems.Add("&Load Page", new EventHandler(LoadPageEventHandler));
-                miPage.MenuItems.Add("&Copy Page");
-                miPage.MenuItems.Add("&Rename");
-                miPage.MenuItems.Add("Add Column", new EventHandler(AddColumn));
-                miPage.MenuItems.Add("Remove Column", new EventHandler(RemoveColumn));
-                miPage.MenuItems.Add("Add Row", new EventHandler(AddRow));
-                miPage.MenuItems.Add("Remove Row", new EventHandler(RemoveRow));
-
-
-                //cellPb.ContextMenu = cm;
-                flp.ContextMenu = cm;
-
-                ActionHandler actHandler = new ActionHandler(this, cell);
-
-                flp.Click += new System.EventHandler(actHandler.Trigger);
-                cellTextPb.Click += new System.EventHandler(actHandler.Trigger);
-                cellPb.Click += new System.EventHandler(actHandler.Trigger);
-
-                if (cell.isEnabled)
-                {
-                    //foreach (var action in cell.Actions)
-                    //{
-                    //    flp.Click += new System.EventHandler(action.Trigger);
-                    //    cellTextPb.Click += new System.EventHandler(action.Trigger);
-                    //    cellPb.Click += new System.EventHandler(action.Trigger);
-                    //}
-                    
-                    behaviorMap.Add(flp, new GazeAwareBehavior(OnGaze) { DelayMilliseconds = 400 });
-                    //behaviorMap.Add(cellPb, new GazeAwareBehavior(OnGaze) { DelayMilliseconds = 400 });
-
-                   
-                }                
-
-                flp.BackColor = System.Drawing.Color.Beige;
-                //this.tablePanel.Controls.Add(cellPb, cell.xPos, cell.yPos);
-                this.tablePanel.Controls.Add(flp, cell.xPos, cell.yPos);
+                applyCell(cell);
             }
 
             this.tablePanel.ResumeLayout();
@@ -342,6 +205,175 @@ namespace SquareVoice
 
             Task.Run(() => ReEnableEyeGaze(2000, behaviorMap));
 
+        }
+
+        private void populateBehaviorMap()
+        {
+            if (null != behaviorMap)
+            {
+                behaviorMap.Dispose();
+                behaviorMap = null;
+            }
+            var components = new System.ComponentModel.Container();
+            behaviorMap = new EyeXFramework.Forms.BehaviorMap(components);
+
+            for (int col = 0; col < mPage.cols; col++)
+            {
+                for (int row = 0; row < mPage.rows; row++)
+                {
+                    var control = this.tablePanel.GetControlFromPosition(col, row);
+                    if (null != control)
+                    {
+                        var cell = control.Tag as GridItemObj;
+                        if (null != cell)
+                        {
+                            if (cell.isEnabled && !isEnableToggleDepressed)
+                            {
+                                behaviorMap.Add(control, new GazeAwareBehavior(OnGaze) { DelayMilliseconds = 400 });
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void applyCell(GridItemObj cell)
+        {
+            if (null != behaviorMap)
+            {
+                behaviorMap.Dispose(); // get rid of this before we start to modify a cell...
+                behaviorMap = null;
+            }
+
+            // If there's already a control in this position, nuke it!
+            var control = this.tablePanel.GetControlFromPosition(cell.xPos, cell.yPos);
+            if (null != control)
+            {
+                this.tablePanel.Controls.Remove(control);
+            }
+
+            //var flp = new System.Windows.Forms.FlowLayoutPanel();
+            var flp = new System.Windows.Forms.TableLayoutPanel();
+            flp.ColumnCount = 1;
+            flp.RowCount = 2;
+            flp.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+            flp.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
+            flp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+
+            flp.Margin = new System.Windows.Forms.Padding(0);
+
+            flp.Anchor =
+                ((System.Windows.Forms.AnchorStyles)((((
+                System.Windows.Forms.AnchorStyles.Top
+                | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
+                | System.Windows.Forms.AnchorStyles.Right)));
+
+            var cellPb = new System.Windows.Forms.PictureBox();
+            flp.Controls.Add(cellPb, 0, 0);
+
+            var cellTextPb = new System.Windows.Forms.PictureBox();
+
+            cellTextPb.Margin = new System.Windows.Forms.Padding(0);
+
+            Image i = new Bitmap(1200, 100);
+            Graphics g = Graphics.FromImage(i);
+            StringFormat stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+            g.DrawString(cell.text, new Font("Arial", 68), Brushes.Black, new PointF(i.Width / 2, i.Height / 2), stringFormat);
+            if (cell.isEnabled)
+            {
+                cellTextPb.Image = i;
+            }
+            g.Dispose();
+            cellTextPb.Dock = DockStyle.Fill;
+            cellTextPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            cellTextPb.Tag = cell;
+
+            flp.Controls.Add(cellTextPb, 0, 1);
+            flp.Tag = cell;
+
+
+            cellPb.Dock = DockStyle.Fill;
+            cellPb.BackColor = System.Drawing.Color.Transparent;
+            if (null != cell.image && cell.isEnabled)
+            {
+                //string imageFileName = Path.Combine(mHelpers.mImagesDir, cell.image);
+                //cellPb.Image = Image.FromFile(imageFileName);
+                cellPb.Image = mHelpers.imageNameToImage(cell.image);
+            }
+            else
+            {
+                cellPb.Image = null;
+            }
+            cellPb.TabStop = false;
+            cellPb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            cellPb.Tag = cell;
+
+            mGridItemLookupTable.Add(cellPb, cell);
+
+            string simplePageName = mPage.name;
+            simplePageName = simplePageName.Replace(".SquareVoice", "");
+
+            ContextMenu cm = new ContextMenu();
+            cm.Tag = cell;
+            //miImage
+            MenuItem miEnabled = new MenuItem("&Enabled", new EventHandler(EnabledEventHandler));
+            miEnabled.Checked = cell.isEnabled;
+            miEnabled.Tag = cell;
+            cm.MenuItems.Add(miEnabled);
+
+            //cm.MenuItems.Add("Edit Cell", new EventHandler(EditCellEventHandler));
+            MenuItem miEditCell = new MenuItem("Edit Cell", new EventHandler(EditCellEventHandler));
+            miEditCell.Tag = cell;
+            cm.MenuItems.Add(miEditCell);
+
+            //cm.MenuItems.Add("-");
+            MenuItem miPage = new MenuItem("&Page");
+            cm.MenuItems.Add(miPage);
+            MenuItem miPageName = new MenuItem("Page: " + simplePageName);
+            miPageName.Enabled = false;
+            miPage.MenuItems.Add(miPageName);
+            miPage.MenuItems.Add("&New Page", new EventHandler(NewPageEventHandler));
+            miPage.MenuItems.Add("&Load Page", new EventHandler(LoadPageEventHandler));
+            miPage.MenuItems.Add("&Copy Page");
+            miPage.MenuItems.Add("&Rename");
+            miPage.MenuItems.Add("Add Column", new EventHandler(AddColumn));
+            miPage.MenuItems.Add("Remove Column", new EventHandler(RemoveColumn));
+            miPage.MenuItems.Add("Add Row", new EventHandler(AddRow));
+            miPage.MenuItems.Add("Remove Row", new EventHandler(RemoveRow));
+
+
+            //cellPb.ContextMenu = cm;
+            flp.ContextMenu = cm;
+
+            ActionHandler actHandler = new ActionHandler(this, cell);
+
+            flp.Click += new System.EventHandler(actHandler.Trigger);
+            cellTextPb.Click += new System.EventHandler(actHandler.Trigger);
+            cellPb.Click += new System.EventHandler(actHandler.Trigger);
+
+            if (cell.isEnabled)
+            {
+                //foreach (var action in cell.Actions)
+                //{
+                //    flp.Click += new System.EventHandler(action.Trigger);
+                //    cellTextPb.Click += new System.EventHandler(action.Trigger);
+                //    cellPb.Click += new System.EventHandler(action.Trigger);
+                //}
+
+//                behaviorMap.Add(flp, new GazeAwareBehavior(OnGaze) { DelayMilliseconds = 400 });
+                //behaviorMap.Add(cellPb, new GazeAwareBehavior(OnGaze) { DelayMilliseconds = 400 });
+
+
+            }
+
+            populateBehaviorMap();
+
+            flp.BackColor = System.Drawing.Color.Beige;
+            //this.tablePanel.Controls.Add(cellPb, cell.xPos, cell.yPos);
+            this.tablePanel.Controls.Add(flp, cell.xPos, cell.yPos);
         }
 
         public class ActionHandler
@@ -360,7 +392,8 @@ namespace SquareVoice
                 if (mPage.isEnableToggleDepressed)
                 {
                     mCell.isEnabled = !mCell.isEnabled;
-                    mPage.applyPage();
+                    mPage.applyCell(mCell);
+                    //mPage.applyPage();
                 }
                 else
                 {
@@ -650,6 +683,17 @@ namespace SquareVoice
             {
                 EnableToggle.BackColor = System.Drawing.Color.Transparent;                
             }
+
+            // enable/ disable eye gaze
+            if (isEnableToggleDepressed)
+            {
+                populateBehaviorMap();
+            }
+            else
+            {
+                applyPage(); // TODO: Why doesn't populateBehaviorMap work here?
+            }
+
         }
 
 
