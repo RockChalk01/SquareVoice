@@ -350,24 +350,14 @@ namespace SquareVoice
 
             ActionHandler actHandler = new ActionHandler(this, cell);
 
-            flp.Click += new System.EventHandler(actHandler.Trigger);
-            cellTextPb.Click += new System.EventHandler(actHandler.Trigger);
-            cellPb.Click += new System.EventHandler(actHandler.Trigger);
 
-            if (cell.isEnabled)
-            {
-                //foreach (var action in cell.Actions)
-                //{
-                //    flp.Click += new System.EventHandler(action.Trigger);
-                //    cellTextPb.Click += new System.EventHandler(action.Trigger);
-                //    cellPb.Click += new System.EventHandler(action.Trigger);
-                //}
+            //if (cell.isEnabled || isEnableToggleDepressed)
+            //{
+                flp.Click += new System.EventHandler(actHandler.Trigger);
+                cellTextPb.Click += new System.EventHandler(actHandler.Trigger);
+                cellPb.Click += new System.EventHandler(actHandler.Trigger);
 
-//                behaviorMap.Add(flp, new GazeAwareBehavior(OnGaze) { DelayMilliseconds = 400 });
-                //behaviorMap.Add(cellPb, new GazeAwareBehavior(OnGaze) { DelayMilliseconds = 400 });
-
-
-            }
+            //}
 
             populateBehaviorMap();
 
@@ -397,9 +387,12 @@ namespace SquareVoice
                 }
                 else
                 {
-                    foreach (var action in mCell.Actions)
+                    if (mCell.isEnabled)
                     {
-                        action.Trigger(sender, e);
+                        foreach (var action in mCell.Actions)
+                        {
+                            action.Trigger(sender, e);
+                        }
                     }
                 }
             }
@@ -692,6 +685,9 @@ namespace SquareVoice
             else
             {
                 applyPage(); // TODO: Why doesn't populateBehaviorMap work here?
+                // ran into an issue where eyegaze isn't working properly
+                // if we only call populateBehaviorMap here.  But, a full refresh
+                // of the page does work.  It adds an unnecessary screen refresh.
             }
 
         }
