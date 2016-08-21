@@ -63,7 +63,7 @@
             this.tablePanel.RowCount = 2;
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tablePanel.Size = new System.Drawing.Size(580, 310);
+            this.tablePanel.Size = new System.Drawing.Size(580, 309);
             this.tablePanel.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -74,7 +74,7 @@
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(290, 155);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(290, 154);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(290, 155);
@@ -97,7 +97,7 @@
             this.ParentTablePanel.RowCount = 2;
             this.ParentTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
             this.ParentTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95F));
-            this.ParentTablePanel.Size = new System.Drawing.Size(580, 339);
+            this.ParentTablePanel.Size = new System.Drawing.Size(580, 338);
             this.ParentTablePanel.TabIndex = 1;
             // 
             // NavBar
@@ -112,13 +112,13 @@
             this.NavBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.NavBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.NavBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.NavBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.NavBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.NavBar.Controls.Add(this.pictureBox1, 3, 0);
+            this.NavBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.NavBar.Controls.Add(this.pictureBox1, 4, 0);
             this.NavBar.Controls.Add(this.NavBackButton, 0, 0);
             this.NavBar.Controls.Add(this.NavForwardButton, 1, 0);
             this.NavBar.Controls.Add(this.HomeButton, 2, 0);
-            this.NavBar.Controls.Add(this.EnableToggle, 4, 0);
+            this.NavBar.Controls.Add(this.EnableToggle, 3, 0);
             this.NavBar.Location = new System.Drawing.Point(0, 0);
             this.NavBar.Margin = new System.Windows.Forms.Padding(0);
             this.NavBar.Name = "NavBar";
@@ -134,13 +134,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::SquareVoice.Properties.Resources.arrow_Forward_color_32xLG;
-            this.pictureBox1.Location = new System.Drawing.Point(135, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(180, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(45, 30);
+            this.pictureBox1.Size = new System.Drawing.Size(400, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // NavBackButton
             // 
@@ -156,6 +157,7 @@
             this.NavBackButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.NavBackButton.TabIndex = 0;
             this.NavBackButton.TabStop = false;
+            this.NavBackButton.Visible = false;
             // 
             // NavForwardButton
             // 
@@ -170,6 +172,7 @@
             this.NavForwardButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.NavForwardButton.TabIndex = 1;
             this.NavForwardButton.TabStop = false;
+            this.NavForwardButton.Visible = false;
             // 
             // HomeButton
             // 
@@ -193,11 +196,11 @@
             this.EnableToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EnableToggle.Image = global::SquareVoice.Properties.Resources.House;
-            this.EnableToggle.Location = new System.Drawing.Point(180, 0);
+            this.EnableToggle.Image = global::SquareVoice.Properties.Resources.ShowHide;
+            this.EnableToggle.Location = new System.Drawing.Point(135, 0);
             this.EnableToggle.Margin = new System.Windows.Forms.Padding(0);
             this.EnableToggle.Name = "EnableToggle";
-            this.EnableToggle.Size = new System.Drawing.Size(400, 30);
+            this.EnableToggle.Size = new System.Drawing.Size(45, 30);
             this.EnableToggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.EnableToggle.TabIndex = 3;
             this.EnableToggle.TabStop = false;

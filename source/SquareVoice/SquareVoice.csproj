@@ -170,6 +170,7 @@
     </Content>
     <Content Include="Resources\House.png" />
     <Content Include="Resources\HouseDepressed.png" />
+    <None Include="Resources\ShowHide.png" />
     <None Include="Resources\house_16xLG.png" />
     <None Include="Resources\arrow_Forward_color_32xLG.png" />
     <None Include="Resources\arrow_back_color_32xLG.png" />
